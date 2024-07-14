@@ -27,6 +27,9 @@ def test():
     uid = common.authenticate(db, username, password, {})
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     if uid:
+        product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
+                                       [[[]]], {'fields': ['id', 'name']})
+        print(product_id)
         return '<h1>Success!</h1>'
     else:
         return '<h1>Not Success!</h1>'
