@@ -9,6 +9,18 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         print(request.json)
+        url = "http://194.195.119.84:8069"
+        db = "demo"
+        username = 'info@appeul.com'
+        password = "jasoos74."
+
+        common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+        # common.version()
+
+        uid = common.authenticate(db, username, password, {})
+        models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+        if uid:
+            models.execute_kw(db, uid, password, 'res.partner', 'create', [request.json])
         return 'success', 200
     else:
         abort(400)
@@ -34,9 +46,11 @@ def get_partners():
     uid = common.authenticate(db, username, password, {})
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     if uid:
-        product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
-                                       [[]], {'fields': ['id', 'name']})
-        print(product_id)
+
+
+        # product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
+        #                                [[]], {'fields': ['id', 'name']})
+        # print(product_id)
         return '<h1></h1>'
 
 
