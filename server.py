@@ -1,4 +1,7 @@
 from flask import Flask, request, abort
+import xmlrpc.client
+
+
 
 app = Flask(__name__)
 
@@ -13,7 +16,34 @@ def webhook():
 
 @app.route('/', methods=['GET'])
 def test():
-    return '<h1>Hello world!</h1>'
+    url = "http://194.195.119.84:8069"
+    db = "kaashiboat"
+    username = 'info@appeul.com'
+    password = "jasoos74."
+
+    common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+    # common.version()
+
+    uid = common.authenticate(db, username, password, {})
+    models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+    if uid:
+        print("Success")
+        return '<h1>Success!</h1>'
+    else:
+        return '<h1>Not Success!</h1>'
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
