@@ -28,7 +28,7 @@ def test():
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     if uid:
         product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
-                                       [[[]]], {'fields': ['id', 'name']})
+                                       [[]], {'fields': ['id', 'name']})
         print(product_id)
         return '<h1>Success!</h1>'
     else:
