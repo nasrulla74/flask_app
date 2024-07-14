@@ -27,7 +27,6 @@ def test():
     uid = common.authenticate(db, username, password, {})
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     if uid:
-        print("Success")
         return '<h1>Success!</h1>'
     else:
         return '<h1>Not Success!</h1>'
