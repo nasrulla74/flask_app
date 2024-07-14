@@ -16,23 +16,24 @@ def webhook():
 
 @app.route('/', methods=['GET'])
 def test():
-    url = "http://194.195.119.84:8069"
-    db = "kaashiboat"
-    username = 'info@appeul.com'
-    password = "jasoos74."
-
-    common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
-    # common.version()
-
-    uid = common.authenticate(db, username, password, {})
-    models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
-    if uid:
-        product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
-                                       [[]], {'fields': ['id', 'name']})
-        print(product_id)
-        return '<h1>Success!</h1>'
-    else:
-        return '<h1>Not Success!</h1>'
+    return '<h1>Success!</h1>'
+    # url = "http://194.195.119.84:8069"
+    # db = "kaashiboat"
+    # username = 'info@appeul.com'
+    # password = "jasoos74."
+    #
+    # common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+    # # common.version()
+    #
+    # uid = common.authenticate(db, username, password, {})
+    # models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+    # if uid:
+    #     product_id = models.execute_kw(db, uid, password, 'res.partner', 'search_read',
+    #                                    [[]], {'fields': ['id', 'name']})
+    #     print(product_id)
+    #     return '<h1>Success!</h1>'
+    # else:
+    #     return '<h1>Not Success!</h1>'
 
 
 
