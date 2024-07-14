@@ -10,6 +10,11 @@ def webhook():
     else:
         abort(400)
 
+
+@app.route('/', methods=['GET'])
+def test():
+    return '<h1>Hello world!</h1>'
+
 if __name__ == '__main__':
     app.run()
 

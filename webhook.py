@@ -1,7 +1,7 @@
 import requests
 import json
 
-webhook_url = "http://127.0.0.1:5000/webhook"
+webhook_url = "https://flask-app-lveg.onrender.com/webhook"
 
 data = { 'name': 'Nasrulla',
          'chanel_url': 'test url'}
